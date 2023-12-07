@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -o pipefail
+set -o errexit
+set -o nounset
+
+DESTINATION_BASE=${1:?}
+
+[ -L ${DESTINATION_BASE} ] || (echo "${DESTINATION_BASE} must be a symbolic link" >&2; exit 2)
+[ -d ${DESTINATION_BASE} ] || (echo "${DESTINATION_BASE} must be symbolic link to a directory" >&2; exit 2)
+
+if [ ! -L ${DESTINATION_BASE} ] || [ ! -d ${DESTINATION_BASE} ]; then
+  echo "${DESTINATION_BASE} must be a symbolic link to a directory" >&2
+fi
+
+ruby "/opt/imp-box/imp_box.rb" "${DESTINATION_BASE}" "${DESTINATION_BASE}.yaml"

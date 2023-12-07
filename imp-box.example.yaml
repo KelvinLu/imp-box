@@ -1,0 +1,16 @@
+# Manifest file
+#
+# A mapping of paths (files or directories) to "modes".
+#
+# - `synchronize`: `--archive` and `--delete`
+#   - Synchronizes new or updated source files against a destination, and
+#     removes any mismatched destination file whose source file does not exist.
+#
+# - `clone`: `--archive`
+#   - Clones new or updated source files against a destination. Destination
+#     files will remain if the source file does not exist anymore.
+#
+# - `move`: `--archive` and `--remove-source-files`
+#   - Copies new or updated source files against a destination. Afterwards,
+#     the source file is removed.
+---

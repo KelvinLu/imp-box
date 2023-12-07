@@ -1,0 +1,11 @@
+[Unit]
+Description=imp-box timer (%I)
+
+[Timer]
+OnActiveSec=79200
+OnUnitActiveSec=79200
+RandomizedDelaySec=7200
+Persistent=true
+
+[Install]
+WantedBy=timers.target

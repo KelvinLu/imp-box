@@ -1,0 +1,9 @@
+[Unit]
+Description=imp-box (%I)
+
+[Service]
+Type=oneshot
+
+ExecStartPre=/opt/imp-box/dry-run-imp-box %I
+
+ExecStart=/opt/imp-box/run-imp-box %I
