@@ -55,7 +55,11 @@ def main(args = ARGV)
 
       raise "Unknown mode '#{mode}' (modes: #{MODES.join(', ')})" unless MODES.include?(mode)
 
-      [file, { destination: destination, mode: mode }]
+      modify_window = params.fetch('modify-window', nil)
+
+      raise 'Must specify timestamp --modify-window value as an integer' unless modify_window.nil? || modify_window.is_a?(Integer)
+
+      [file, { destination: destination, mode: mode, modify_window: modify_window }]
     end
   ]
 
@@ -71,6 +75,8 @@ def main(args = ARGV)
       when :move
         %w[--archive --remove-source-files]
       end
+
+    options = options.push('--modify-window', params.fetch(:modify_window).to_s) unless params.fetch(:modify_window).nil?
 
     options = options.push('--dry-run') if ENV['DRY_RUN']
 
